@@ -1,0 +1,32 @@
+package in.mindcraft.HQLDemo;
+
+import javax.persistence.Id;
+
+public class MobilePhone {
+   @Id
+	private int mid;
+	private String make;
+	private  double cost;
+	
+	public int getMid() {
+		return mid;
+	}
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+	public String getMake() {
+		return make;
+	}
+	public void setMake(String make) {
+		this.make = make;
+	}
+	public double getCost() {
+		return cost;
+	}
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+	
+}
+
+

@@ -1,0 +1,278 @@
+package in.mindcraft.BankingSystem_Hibernate;
+
+import java.util.Scanner;
+
+import in.mindcraft.HQLDemo.Mymobile;
+
+class AccountHolder{
+	 private int AccountNumber;
+	 private String Name;
+	 private double Balance;
+	
+	 
+public AccountHolder(int accountNumber, String name, double balance) {
+		//super();
+		AccountNumber = accountNumber;
+		Name = name;
+		Balance = balance;
+	}
+
+public int getAccountNumber() {
+		return AccountNumber;
+	}
+
+public void setAccountNumber(int accountNumber) {
+		AccountNumber = accountNumber;
+	}
+
+public String getName() {
+		return Name;
+	}
+
+public void setName(String name) {
+		Name = name;
+	}
+
+public double getBalance() {
+		return Balance;
+	}
+
+public void setBalance(double balance) {
+		Balance = balance;
+	}
+
+
+
+@Override
+public String toString() {
+		return "AccountHolder [AccountNumber=" + AccountNumber + ", Name=" + Name + ", Balance=" + Balance + "]";
+}
+
+public void  show(){
+	System.out.println(AccountNumber+" "+Name+" "+Balance);
+		
+}
+	
+ }
+
+
+
+class Customer extends AccountHolder{
+
+	public Customer(int accountNumber, String name, double balance) {
+		super(accountNumber, name, balance);
+		
+	}
+	
+	
+	
+	public void deposit(double amount){
+      balance=super.getBalance()+amount;
+
+}
+
+
+class Administrator extends AccountHolder{
+
+	public Administrator(int accountNumber, String name, double balance) {
+		super(accountNumber, name, balance);
+		
+	}
+	
+}
+
+public class MyBank {
+
+	public void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		while(true) {
+System.out.println("Enter your choice : ");
+System.out.println("1.Login as an Administrator : \n"); 
+System.out.println("2.Login as a Customer :  \n");
+System.out.println("3.Exit : \n");
+
+int choice=sc.nextInt();
+switch(choice) {
+case 1:
+	System.out.println("Login as an Administrator : \n");
+	String a=sc.next();
+	String b=sc.next();
+	
+	if(a=="root" && b=="rootroot") {
+		while(true) {
+		System.out.println("1.Create/add a new customer account :  ");
+		System.out.println("2.Search the Customer Details by Name or account number : ");
+		System.out.println("3.Modify the Customer Details by account number in Bank System : ");
+		System.out.println("4.Balance inquiry for a particular account.");
+		System.out.println("5.Close (Delete) the Customer Account from Banks System. : ");
+int mychoice=sc.nextInt();
+switch(mychoice) {
+case 1:
+	System.out.println("1.Create/add a new customer account :  ");
+	try {
+		System.out.println("enter id,name,cost of mobile");
+		AccountHolder ah=new AccountHolder(sc.nextInt(),sc.next(),sc.nextDouble());
+		session.save(ah);
+		ah.show();
+		break;
+
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+
+
+
+
+
+	
+case 2:
+	System.out.println("2.Search the Customer Details by Name or account number : ");
+	System.out.println("enter AccountNumber:");
+	int acno=sc.nextInt();
+	try {
+	
+		AccountHolder ah=(AccountHolder) session.load(AccountHolder.class,acno);	
+//if(sc.nextInt()==my.getId())	{
+ah.show();
+tx.commit();
+
+
+}
+	catch(Exception e)
+	{
+		System.out.println(e);
+		}
+break;
+
+case 3:
+	System.out.println("3.Modify the Customer Details by account number in Bank System : ");
+	
+	try {
+System.out.println("enter AccountNumber : ");
+AccountHolder ah=(AccountHolder) session.get(AccountHolder.class,sc.nextInt());  
+ah.setName(sc.next());
+ah.setBalance(sc.nextDouble());
+session.update(ah);
+tx.commit();
+ah.show();
+}
+	
+	    catch(Exception e) {
+		System.out.println(e);
+	}
+break;
+case 4:
+	System.out.println("4.Balance inquiry for a particular account.");
+	System.out.println("enter AccountNumber:");
+	int acno2=sc.nextInt();
+	try {
+	
+AccountHolder ah=(AccountHolder) session.load(AccountHolder.class,acno2);	
+ah.getBalance();
+tx.commit();
+
+
+}
+	catch(Exception e)
+	{
+		System.out.println(e);
+		}
+break;
+	
+case 5:
+System.out.println("5.Close (Delete) the Customer Account from Banks System. : ");
+
+try {
+System.out.println("enter AccountNumber : ");
+AccountHolder ah=(AccountHolder) session.get(AccountHolder.class,sc.nextInt());
+session.delete(ah);
+tx.commit();
+break;
+
+	}catch(Exception e) {
+		System.out.println(e);
+	}
+	
+case 6:
+	break;
+}
+ 
+	 	} 
+	}
+	else {
+		System.out.println("Access Denied");
+	}
+	
+case 2:
+System.out.println(" Login as a Customer : ");
+System.out.println("Search the Customer Details by  AccountNumber : ");
+	System.out.println("enter AccountNumber:");
+	int acno=sc.nextInt();
+	try {
+	
+		AccountHolder ah=(AccountHolder) session.load(AccountHolder.class,acno);	
+	{
+ah.show();
+tx.commit();
+
+System.out.println("1.Deposit the money in customer account :  ");				 
+System.out.println("2.Withdraw the money from customer. Display updated record. ");
+System.out.println("3.Print mini Statement – ( last 5 transactions )  : ");
+System.out.println("4.Transfer amount into particular account.");
+
+int custchoice=sc.nextInt();
+switch(custchoice) {
+case 1:
+	System.out.println("enter Amount to be deposited :"+sc.nextDouble());
+	Customer ch=new Customer();
+	ch.deposit();
+	
+	
+case 2:
+case 3:
+case 4:
+	
+}	
+
+
+}
+	catch(Exception e)
+	{
+		System.out.println(e);
+		}
+	}
+	
+	
+case 3:
+	System.out.println("3.Exit ");
+	break;
+
+
+	
+		
+		
+	
+		
+			
+
+
+
+else {
+	
+}
+
+
+	}
+							}
+						}
+				}
+}
+
+
+
+
+
+
+
+

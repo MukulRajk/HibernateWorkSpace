@@ -1,0 +1,8 @@
+package in.mindcraft.HibernateDemo;
+
+public class Student {  // POJO - Plain Old Java Object 
+	
+	private int rollno;
+	private String name;
+	
+}

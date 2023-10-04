@@ -1,0 +1,114 @@
+package in.mindcraft.BankingSystem_Hibernate;
+ 
+class AccountHolder{
+	 private int AccountNumber;
+	 private String Name;
+	 private double Balance;
+	 private String username;
+	 private String password;
+	 
+public AccountHolder(int accountNumber, String name, double balance) {
+		super();
+		AccountNumber = accountNumber;
+		Name = name;
+		Balance = balance;
+	}
+
+public AccountHolder(String username, String password) {
+	super();
+	this.username = username;
+	this.password = password;
+}
+
+public int getAccountNumber() {
+		return AccountNumber;
+	}
+
+public void setAccountNumber(int accountNumber) {
+		AccountNumber = accountNumber;
+	}
+
+public String getName() {
+		return Name;
+	}
+
+public void setName(String name) {
+		Name = name;
+	}
+
+public double getBalance() {
+		return Balance;
+	}
+
+public void setBalance(double balance) {
+		Balance = balance;
+	}
+
+
+	
+public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+}
+
+public String getPassword() {
+	return password;
+}
+
+public void setPassword(String password) {
+	this.password = password;
+}
+
+public String toString1() {
+	return "AccountHolder [username=" + username + ", password=" + password + "]";
+}
+
+@Override
+public String toString() {
+		return "AccountHolder [AccountNumber=" + AccountNumber + ", Name=" + Name + ", Balance=" + Balance + "]";
+
+	 
+	
+ }
+
+class Customer extends AccountHolder{
+
+	public Customer(int accountNumber, String name, double balance) {
+		super(accountNumber, name, balance);
+		
+	}
+
+}
+
+
+class Administrator extends AccountHolder{
+
+	public Administrator(String username,String password) {
+		super(username,password);
+		
+	}
+	
+}
+
+public class MyBank {
+
+	public void main(String[] args) {
+		System.out.println("Login as an Administrator : \n"); 
+		System.out.println("1.Create/add a new customer account :  ");
+				System.out.println("2.Search the Customer Details by Name or account number : ");
+				System.out.println("3.Modify the Customer Details by account number in Bank System : ");
+				System.out.println("4.Balance inquiry for a particular account.");
+				System.out.println("5.Close (Delete) the Customer Account from Banks System. : ");
+sysout
+				Login as a Customer : 
+				1.Deposit the money in customer account : 
+				2.Withdraw the money from customer. Display updated record.
+				3.Print mini Statement – ( last 5 transactions )
+				4.Transfer amount into particular account.");
+
+	}
+
+}

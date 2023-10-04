@@ -1,0 +1,94 @@
+package in.mindcraft.HQLDemo;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
+class Mymobile {
+	private int id;
+	private String name;
+	private double cost;
+	
+	public Mymobile() {
+		
+	}
+	
+	public Mymobile(int id, String name, double cost) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cost = cost;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getCost() {
+		return cost;
+	}
+
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	@Override
+	public String toString() {
+		return "Mymobile [id=" + id + ", name=" + name + ", cost=" + cost + "]";
+	}
+
+	
+}
+
+
+
+
+public class PracticeHQL {
+public static void main(String args[]){
+	
+	Configuration con=new Configuration().configure();
+	ServiceRegistry reg=new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();		
+			SessionFactory sf=con.buildSessionFactory(reg);
+			Session session=sf.openSession();
+			Transaction tx=session.beginTransaction();
+			//MobilePhone m=(MobilePhone)session.get(MobilePhone.class,102);
+			//System.out.println("Details of Mobile = " +m);
+
+			Query query=session.createQuery("from MobilePhone where cost>22000");  // from classname instead of tablename
+			// also written as "from MobilePhone m where m.cost>22000"
+			List<MobilePhone> mlist=query.list();
+			
+
+			
+			for(MobilePhone m:mlist)
+				System.out.println(m);
+
+			/*session.save(m1);
+			session.save(m2);
+			session.save(m3);//save
+			session.save(m4);*/
+
+			tx.commit();
+
+	System.out.println("enter id,name,cost of mobilephone : ");
+	Mymobile mm=new Mymobile();
+}
+}
